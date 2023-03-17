@@ -1,25 +1,25 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, Outlet, useParams } from 'react-router-dom';
 import { fetchMovieInfo } from 'services/api';
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState({});
 
-  const { id } = useParams();
+  const { movieId } = useParams();
 
   useEffect(() => {
     const getMovieInfo = async () => {
       try {
-        const { data } = await fetchMovieInfo(id);
+        const { data } = await fetchMovieInfo(movieId);
         setMovie(data);
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         console.log(error.message);
       }
     };
 
     getMovieInfo();
-  }, [id]);
+  }, [movieId]);
 
   const { title, poster_path, overview, genres, vote_average } = movie;
   const img_path = 'https://image.tmdb.org/t/p/w500';
@@ -32,6 +32,20 @@ const MovieDetails = () => {
         <p>User score: {vote_average}</p>
         <p>Overview {overview}</p>
         <p>Genres {genres?.map(genre => genre.name)}</p>
+      </section>
+
+      <section>
+        <h2>Additional information</h2>
+        <ul>
+          <li>
+            <Link to="cast">Cast</Link>
+          </li>
+          <li>
+            <Link to="reviews">Reviews</Link>
+          </li>
+        </ul>
+
+        <Outlet />
       </section>
     </main>
   );
