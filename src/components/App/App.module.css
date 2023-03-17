@@ -1,0 +1,22 @@
+.header {
+  padding: 10px;
+  border-bottom: 2px solid grey;
+  margin-bottom: 20px;
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+}
+
+.link {
+  padding: 5px 10px;
+  color: white;
+  background-color: salmon;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.link:global(.active) {
+  background-color: blueviolet;
+}
