@@ -1,11 +1,12 @@
+import { Suspense } from 'react';
 import { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { fetchMovieInfo } from 'services/api';
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState({});
-
   const { movieId } = useParams();
+  const location = useLocation();
 
   useEffect(() => {
     const getMovieInfo = async () => {
@@ -26,8 +27,10 @@ const MovieDetails = () => {
 
   return (
     <main>
+      <Link to={location.state?.from ?? '/home'}>go back</Link>
+
       <section>
-        <img src={`${img_path}${poster_path}`} alt={title} />
+        <img src={`${img_path}${poster_path}`} alt={title} width="300" />
         <h2>{title}</h2>
         <p>User score: {vote_average}</p>
         <p>Overview {overview}</p>
@@ -45,7 +48,9 @@ const MovieDetails = () => {
           </li>
         </ul>
 
-        <Outlet />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
       </section>
     </main>
   );

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 
 import { fetchSerchingMovies } from 'services/api';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
+  const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
 
@@ -15,7 +16,7 @@ const Movies = () => {
       try {
         const { data } = await fetchSerchingMovies(query);
         setMovies(data.results);
-        console.log(data);
+        //console.log(data);
       } catch (error) {
         console.log(error.message);
       }
@@ -40,7 +41,7 @@ const Movies = () => {
       <ul>
         {movies.map(({ id, title }) => (
           <li key={id}>
-            <Link to={`${id}`}>
+            <Link to={`${id}`} state={{ from: location }}>
               <p>{title}</p>
             </Link>
           </li>
