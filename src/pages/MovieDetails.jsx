@@ -1,11 +1,18 @@
 import { Suspense, useRef } from 'react';
 import { useEffect, useState } from 'react';
-import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
+
+import BackLink from 'components/BackLink/BackLink';
+import MovieCard from 'components/MovieCard/MovieCard';
+import AddInfo from 'components/AddInfo/AddInfo';
+import Loader from 'components/Loader/Loader';
 
 import { fetchMovieInfo } from 'services/api';
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState({});
+  const [error, setError] = useState(null);
+
   const { movieId } = useParams();
   const location = useLocation();
   const backLinkRef = useRef(location.state?.from ?? '/home');
@@ -14,46 +21,26 @@ const MovieDetails = () => {
     const getMovieInfo = async () => {
       try {
         const { data } = await fetchMovieInfo(movieId);
-        setMovie(prevState => ({ ...prevState, ...data }));
-        console.log(data);
+        setMovie(data);
       } catch (error) {
-        console.log(error.message);
+        setError(error.message);
       }
     };
 
     getMovieInfo();
   }, [movieId]);
 
-  const { title, poster_path, overview, genres, vote_average } = movie;
-  const img_path = 'https://image.tmdb.org/t/p/w500';
-
   return (
     <main>
-      <Link to={backLinkRef.current}>go back</Link>
+      <BackLink to={backLinkRef.current}>GO BACK</BackLink>
 
-      <section>
-        <img src={`${img_path}${poster_path}`} alt={title} width="300" />
-        <h2>{title}</h2>
-        <p>User score: {vote_average}</p>
-        <p>Overview {overview}</p>
-        <p>Genres {genres?.map(genre => genre.name)}</p>
-      </section>
+      {error && <p>Ooooops... something went wrong 😥 {error}</p>}
+      <MovieCard movie={movie} />
+      <AddInfo />
 
-      <section>
-        <h2>Additional information</h2>
-        <ul>
-          <li>
-            <Link to="cast">Cast</Link>
-          </li>
-          <li>
-            <Link to="reviews">Reviews</Link>
-          </li>
-        </ul>
-
-        <Suspense fallback={<div>Loading...</div>}>
-          <Outlet />
-        </Suspense>
-      </section>
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </main>
   );
 };

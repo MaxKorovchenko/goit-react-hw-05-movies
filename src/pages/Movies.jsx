@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+
+import MoviesList from 'components/MoviesList/MoviesList';
+import SearchForm from 'components/SearchForm/SearchForm';
+import Loader from 'components/Loader/Loader';
 
 import { fetchSerchingMovies } from 'services/api';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
-  const location = useLocation();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
 
@@ -14,39 +20,26 @@ const Movies = () => {
 
     const getSerchingMovies = async () => {
       try {
+        setIsLoading(true);
         const { data } = await fetchSerchingMovies(query);
         setMovies(data.results);
-        //console.log(data);
+
+        if (!data.results.length) alert('nothing found 😥');
       } catch (error) {
-        console.log(error.message);
+        setError(error.message);
+      } finally {
+        setIsLoading(false);
       }
     };
-
     getSerchingMovies();
   }, [query]);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    setSearchParams({ query: e.target.search.value });
-    e.target.reset();
-  };
-
   return (
     <main>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="search" />
-        <button type="submit">search</button>
-      </form>
-
-      <ul>
-        {movies.map(({ id, title }) => (
-          <li key={id}>
-            <Link to={`${id}`} state={{ from: location }}>
-              <p>{title}</p>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <SearchForm onSubmit={setSearchParams} />
+      {isLoading && <Loader />}
+      {error && <p>Ooooops... something went wrong 😥 {error}</p>}
+      <MoviesList items={movies} />
     </main>
   );
 };
