@@ -1,19 +1,21 @@
-import { Suspense } from 'react';
+import { Suspense, useRef } from 'react';
 import { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+
 import { fetchMovieInfo } from 'services/api';
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState({});
   const { movieId } = useParams();
   const location = useLocation();
+  const backLinkRef = useRef(location.state?.from ?? '/home');
 
   useEffect(() => {
     const getMovieInfo = async () => {
       try {
         const { data } = await fetchMovieInfo(movieId);
-        setMovie(data);
-        // console.log(data);
+        setMovie(prevState => ({ ...prevState, ...data }));
+        console.log(data);
       } catch (error) {
         console.log(error.message);
       }
@@ -27,7 +29,7 @@ const MovieDetails = () => {
 
   return (
     <main>
-      <Link to={location.state?.from ?? '/home'}>go back</Link>
+      <Link to={backLinkRef.current}>go back</Link>
 
       <section>
         <img src={`${img_path}${poster_path}`} alt={title} width="300" />
