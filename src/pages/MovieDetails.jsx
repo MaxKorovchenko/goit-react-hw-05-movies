@@ -31,7 +31,7 @@ const MovieDetails = () => {
   }, [movieId]);
 
   return (
-    <main>
+    <main style={{ width: 900, margin: '0 auto' }}>
       <BackLink to={backLinkRef.current}>GO BACK</BackLink>
 
       {error && <p>Ooooops... something went wrong 😥 {error}</p>}

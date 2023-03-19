@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 
+import placeholder from '../../services/images/placeholder.jpg';
+
 import styles from './MovieCard.module.css';
 
 const MovieCard = ({ movie }) => {
@@ -9,7 +11,12 @@ const MovieCard = ({ movie }) => {
 
   return (
     <section className={styles.container}>
-      <img src={`${img_path}${poster_path}`} alt={title} width="300" />
+      <img
+        src={poster_path ? `${img_path}${poster_path}` : placeholder}
+        alt={title}
+        width="300"
+        height="450"
+      />
       <div>
         <h2 className={styles.title}>{title}</h2>
         <p className={styles.score}>User score: {vote_average}</p>

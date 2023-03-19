@@ -1,6 +1,6 @@
 .header {
   padding: 20px;
-  border-bottom: 2px solid grey;
+  border-bottom: 2px solid #808080;
   margin-bottom: 20px;
 
   background-color: #45494e;
@@ -14,7 +14,7 @@
 
 .link {
   padding: 5px 10px;
-  color: white;
+  color: #ffffff;
   background-color: #9a9191;
   border-radius: 4px;
   text-decoration: none;
@@ -32,20 +32,5 @@
 }
 
 .link:global(.active) {
-  background-color: salmon;
+  background-color: #fa8072;
 }
-
-/* .footer {
-  position: fixed;
-  left: 0px;
-  bottom: 0px;
-  width: 100%;
-  flex: 0 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100px;
-
-  background-color: darkslategray;
-} */

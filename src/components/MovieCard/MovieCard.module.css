@@ -2,14 +2,14 @@
   box-sizing: border-box;
   display: flex;
   gap: 20px;
-  width: 800px;
+  width: 900px;
   margin: 0 auto;
   margin-bottom: 20px;
-  border: 2px solid grey;
+  border: 2px solid #808080;
   border-radius: 10px;
   padding: 20px;
 
-  background-color: aliceblue;
+  background-color: #f0f8ff;
 }
 
 .title {
@@ -35,7 +35,7 @@
 .divider {
   font-size: 20px;
   font-weight: 700;
-  color: rgb(64, 15, 110);
+  color: #400f6e;
 }
 
 .span {

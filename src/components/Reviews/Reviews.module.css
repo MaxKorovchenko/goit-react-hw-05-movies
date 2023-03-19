@@ -1,0 +1,14 @@
+.author {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.text {
+  text-align: justify;
+  font-size: 20px;
+}
+
+.text:not(last-child) {
+  margin-bottom: 10px;
+}

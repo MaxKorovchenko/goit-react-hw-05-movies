@@ -2,9 +2,11 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { ImArrowLeft } from 'react-icons/im';
 
+import styles from './BackLink.module.css';
+
 const BackLink = ({ to, children }) => {
   return (
-    <Link to={to}>
+    <Link className={styles.link} to={to}>
       <ImArrowLeft />
       {children}
     </Link>

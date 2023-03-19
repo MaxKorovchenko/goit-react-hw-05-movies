@@ -1,6 +1,8 @@
 .title {
-  font-size: 24px;
+  font-size: 28px;
   text-align: center;
+  text-shadow: 2px 2px 3px #f0f8ff;
+  margin-bottom: 20px;
 }
 
 .list {
@@ -8,4 +10,21 @@
   gap: 20px;
   justify-content: center;
   list-style: none;
+  margin-bottom: 20px;
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65px;
+  height: 25px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  box-shadow: 2px 2px 5px 1px #5858c7;
+  color: #f0f8ff;
+  background-color: #464657;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 18px;
 }

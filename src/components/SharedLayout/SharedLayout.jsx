@@ -22,11 +22,6 @@ const SharedLayout = () => {
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
-
-      {/* <footer className={styles.footer}>
-        {' '}
-        <p>© 2023 | All Rights Reserved |&nbsp;</p>
-      </footer> */}
     </div>
   );
 };

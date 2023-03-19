@@ -8,10 +8,14 @@ const AddInfo = () => {
       <h2 className={styles.title}>Additional information</h2>
       <ul className={styles.list}>
         <li>
-          <Link to="cast">Cast</Link>
+          <Link className={styles.link} to="cast">
+            Cast
+          </Link>
         </li>
         <li>
-          <Link to="reviews">Reviews</Link>
+          <Link className={styles.link} to="reviews">
+            Reviews
+          </Link>
         </li>
       </ul>
     </section>

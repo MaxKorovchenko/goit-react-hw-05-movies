@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import MoviesList from 'components/MoviesList/MoviesList';
 import SearchForm from 'components/SearchForm/SearchForm';
@@ -24,7 +26,9 @@ const Movies = () => {
         const { data } = await fetchSerchingMovies(query);
         setMovies(data.results);
 
-        if (!data.results.length) alert('nothing found 😥');
+        if (!data.results.length) {
+          toast.info('No results were found for your search!');
+        }
       } catch (error) {
         setError(error.message);
       } finally {
@@ -40,6 +44,8 @@ const Movies = () => {
       {isLoading && <Loader />}
       {error && <p>Ooooops... something went wrong 😥 {error}</p>}
       <MoviesList items={movies} />
+
+      <ToastContainer position="top-right" autoClose={3000} />
     </main>
   );
 };
