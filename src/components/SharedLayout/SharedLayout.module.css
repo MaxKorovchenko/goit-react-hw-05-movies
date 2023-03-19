@@ -1,22 +1,51 @@
 .header {
-  padding: 10px;
+  padding: 20px;
   border-bottom: 2px solid grey;
   margin-bottom: 20px;
+
+  background-color: #45494e;
 }
 
 .nav {
   display: flex;
-  gap: 10px;
+  justify-content: center;
+  gap: 20px;
 }
 
 .link {
   padding: 5px 10px;
   color: white;
-  background-color: salmon;
+  background-color: #9a9191;
   border-radius: 4px;
   text-decoration: none;
+  font-weight: 700;
+  font-size: 20px;
+
+  box-shadow: 2px 2px 5px 1px #e8ebed;
+
+  transition: transform 250ms linear;
+}
+
+.link:hover,
+.link:focus {
+  transform: scale(1.1);
 }
 
 .link:global(.active) {
-  background-color: blueviolet;
+  background-color: salmon;
 }
+
+/* .footer {
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100px;
+
+  background-color: darkslategray;
+} */

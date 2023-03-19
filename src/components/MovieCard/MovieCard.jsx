@@ -1,22 +1,32 @@
 import PropTypes from 'prop-types';
 
+import styles from './MovieCard.module.css';
+
 const MovieCard = ({ movie }) => {
   //console.log(movie);
   const { title, poster_path, overview, genres, vote_average } = movie;
   const img_path = 'https://image.tmdb.org/t/p/w500';
 
   return (
-    <section>
+    <section className={styles.container}>
       <img src={`${img_path}${poster_path}`} alt={title} width="300" />
-      <h2>{title}</h2>
-      <p>User score: {vote_average}</p>
-      <p>Overview {overview}</p>
-      <p>
-        Genres:
-        {genres?.map(({ id, name }) => (
-          <span key={id}>{name}</span>
-        ))}
-      </p>
+      <div>
+        <h2 className={styles.title}>{title}</h2>
+        <p className={styles.score}>User score: {vote_average}</p>
+        <p className={styles.wrapper}>
+          <span className={styles.divider}>Overview</span> {overview}
+        </p>
+        <div className={styles.wrapper}>
+          <span className={styles.divider}>Genres</span>
+          <p>
+            {genres?.map(({ id, name }) => (
+              <span key={id} className={styles.span}>
+                {name}
+              </span>
+            ))}
+          </p>
+        </div>
+      </div>
     </section>
   );
 };

@@ -3,11 +3,11 @@ import { NavLink, Outlet } from 'react-router-dom';
 
 import Loader from 'components/Loader/Loader';
 
-import styles from '../SharedLayout/SharedLayout.module.css';
+import styles from './SharedLayout.module.css';
 
 const SharedLayout = () => {
   return (
-    <div>
+    <div className={styles.container}>
       <header className={styles.header}>
         <nav className={styles.nav}>
           <NavLink className={styles.link} to="/">
@@ -22,6 +22,11 @@ const SharedLayout = () => {
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
+
+      {/* <footer className={styles.footer}>
+        {' '}
+        <p>© 2023 | All Rights Reserved |&nbsp;</p>
+      </footer> */}
     </div>
   );
 };

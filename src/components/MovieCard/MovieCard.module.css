@@ -1,0 +1,43 @@
+.container {
+  box-sizing: border-box;
+  display: flex;
+  gap: 20px;
+  width: 800px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  border: 2px solid grey;
+  border-radius: 10px;
+  padding: 20px;
+
+  background-color: aliceblue;
+}
+
+.title {
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+
+.score {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+
+  text-align: justify;
+}
+
+.divider {
+  font-size: 20px;
+  font-weight: 700;
+  color: rgb(64, 15, 110);
+}
+
+.span {
+  margin-right: 10px;
+}
