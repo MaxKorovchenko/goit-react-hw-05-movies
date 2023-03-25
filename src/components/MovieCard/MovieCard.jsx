@@ -5,7 +5,6 @@ import placeholder from '../../services/images/placeholder.jpg';
 import styles from './MovieCard.module.css';
 
 const MovieCard = ({ movie }) => {
-  //console.log(movie);
   const { title, poster_path, overview, genres, vote_average } = movie;
   const img_path = 'https://image.tmdb.org/t/p/w500';
 
@@ -42,7 +41,7 @@ export default MovieCard;
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({
-    title: PropTypes.string,
+    title: PropTypes.string.isRequired,
     poster_path: PropTypes.string,
     overview: PropTypes.string,
     vote_average: PropTypes.number,

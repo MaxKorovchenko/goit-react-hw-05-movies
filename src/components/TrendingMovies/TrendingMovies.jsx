@@ -27,6 +27,7 @@ const TrendingMovies = () => {
     <>
       <h1 className={styles.title}>Trending today</h1>
       {error && <p>Ooooops... something went wrong 😥 {error}</p>}
+
       <MoviesList items={movies} />
     </>
   );

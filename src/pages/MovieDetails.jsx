@@ -10,7 +10,7 @@ import Loader from 'components/Loader/Loader';
 import { fetchMovieInfo } from 'services/api';
 
 const MovieDetails = () => {
-  const [movie, setMovie] = useState({});
+  const [movie, setMovie] = useState(null);
   const [error, setError] = useState(null);
 
   const { movieId } = useParams();
@@ -35,7 +35,7 @@ const MovieDetails = () => {
       <BackLink to={backLinkRef.current}>GO BACK</BackLink>
 
       {error && <p>Ooooops... something went wrong 😥 {error}</p>}
-      <MovieCard movie={movie} />
+      {movie && <MovieCard movie={movie} />}
       <AddInfo />
 
       <Suspense fallback={<Loader />}>

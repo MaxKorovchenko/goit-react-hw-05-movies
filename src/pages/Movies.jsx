@@ -41,8 +41,10 @@ const Movies = () => {
   return (
     <main>
       <SearchForm onSubmit={setSearchParams} />
+
       {isLoading && <Loader />}
       {error && <p>Ooooops... something went wrong 😥 {error}</p>}
+
       <MoviesList items={movies} />
 
       <ToastContainer position="top-right" autoClose={3000} />
