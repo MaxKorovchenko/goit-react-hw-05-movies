@@ -15,10 +15,10 @@ const Movies = () => {
   const [error, setError] = useState(null);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get('query') ?? '';
+  const query = searchParams.get('query');
 
   useEffect(() => {
-    if (query === '') return;
+    if (!query) return;
 
     const getSerchingMovies = async () => {
       try {
